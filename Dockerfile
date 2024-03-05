@@ -1,3 +1,6 @@
+# Copyright 2024 OpenVPN Inc <sales@openvpn.net>
+# SPDX-License-Identifier: Apache-2.0
+#
 FROM --platform=$TARGETPLATFORM ubuntu:22.04
 
 ARG TARGETPLATFORM

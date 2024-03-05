@@ -1,3 +1,6 @@
+# Copyright 2024 OpenVPN Inc <sales@openvpn.net>
+# SPDX-License-Identifier: Apache-2.0
+#
 #!/bin/bash
 
 set -ex
