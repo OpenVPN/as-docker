@@ -39,8 +39,10 @@ Please note: For interacting with the network stack  `--cap-add=NET_ADMIN` shoul
 
 ### Application Setup
 
-The admin interface is available at `https://DOCKER-HOST-IP:943/admin` (assuming bridge mode) with a default user 'openvpn' and the password can be found in the docker logs or in the `/usr/local/openvpn_as/init.log` file inside container (on the first initial run).
-
+The admin interface is available at `https://DOCKER-HOST-IP:943/admin` (assuming bridge mode) with a default user 'openvpn' and the password can be found in the docker logs(on the first initial run):
+```
+docker logs -f openvpn-as
+```
 To ensure your devices can connect to your VPN properly, go to Configuration -> Network Settings -> and change the "Hostname or IP Address" section to either your domain name or public ip address.
 
 ### Testing/Debugging
@@ -54,6 +56,10 @@ To get an interactive shell:
 docker exec -it openvpn-as /bin/bash
 ```
 ## Bugs and feature requests
+
+Code contributions are most welcome. Please submit pull request for review to the
+
+https://github.com/OpenVPN/as-docker
 
 If you find a bug in our image, please file a bug here:
 
