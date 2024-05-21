@@ -1,11 +1,18 @@
-![openvpn-as](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/OpenVPN_logo.svg/2560px-OpenVPN_logo.svg.png)
+![openvpn-as](https://openvpn.net/images/logo-ovpn-dark.svg)
 # OpenVPN Access Server
 
-[Openvpn-as](https://openvpn.net/access-server/) OpenVPN Access Server, our self-hosted solution, simplifies the rapid deployment of a secure remote access and site-to-site solution with a web-based administration interface and built-in OpenVPN Connect app distribution with bundled connection profiles.
+[OpenVPN Access Server](https://openvpn.net/access-server/), the OpenVPN self-hosted solution, simplifies the rapid deployment of a secure remote access solution with a web-based graphic user interface and OpenVPN Connect client installers.
 
-We built OpenVPN Access Server using the OpenVPN open source core and additional open source software like OpenSSL. This provides full transparency of the critical security and protocol functionality. The community edition creates secure VPN connections using a custom security protocol that utilizes SSL/TLS. With over 60 million downloads to date, the community edition is a community-supported OSS (open-source software) project.
+Get Technical Support 24/7 and Schedule a Live Demo at openvpn.com.
 
-OpenVPN Access Server maintains compatibility with the open source project, making the deployed VPN immediately usable with OpenVPN protocol-compatible software on various routers and operating systems, as well as Linux. The official OpenVPN Inc.- developed client, OpenVPN Connect, is available for Windows, macOS, Linux, and mobile OS (Android and iOS) environments.
+Our products are based on the market-proven OpenVPN protocol and trusted by some of the world's most renowned brands for their unmatched flexibility, scalability, and ease of use.
+
+OpenVPN Access Server delivers the enterprise VPN your business has been looking for. Protect your data communications, secure IoT resources, and provide encrypted remote access to on-premise, hybrid, and public cloud resources.
+
+Access Server provides you with a powerful and easy-to-use web-based admin site that makes VPN management and configuration simple for anybody (with or without Linux knowledge). Access Server integrates OpenVPN server capabilities, access management, and OpenVPN client software that accommodates Windows, macOS, Linux, Android, iOS, and ChromeOS environments.
+
+Our licensing model is based on the number of concurrent connected devices, so it's affordable for any size business and can easily grow with your company. Without a license key installed, OpenVPN Access Server will allow 2 concurrent connections at no additional cost (excepting infrastructure costs to run the Docker container).
+
 
 ## Supported Architectures
 
@@ -27,11 +34,8 @@ OpenVPN Access Server maintains compatibility with the open source project, maki
 Launch this image:
 ```bash
 docker run -d \
-  --name=openvpn-as \
-  --cap-add=NET_ADMIN \
-  -p 943:943 \
-  -p 443:443 \
-  -p 1194:1194/udp \
+  --name=openvpn-as --cap-add=NET_ADMIN \
+  -p 943:943 -p 443:443 -p 1194:1194/udp \
   -v <path to data>:/openvpn \
   openvpn/openvpn-as
 ```
@@ -55,12 +59,14 @@ To get an interactive shell:
 ```
 docker exec -it openvpn-as /bin/bash
 ```
-## Bugs and feature requests
+## Docker image build script
 
-Code contributions are most welcome. Please submit pull request for review to the
+Code contributions for the Docker image build are most welcome. Please submit pull request for review to:
 
 https://github.com/OpenVPN/as-docker
 
-If you find a bug in our image, please file a bug here:
+## Contact support
+
+You can contact the support team for OpenVPN Access Server here:
 
 https://support.openvpn.com/hc/en-us/categories/360006075631-Access-Server
