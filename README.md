@@ -41,15 +41,38 @@ docker run -d \
 ```
 Please note: For interacting with the network stack  `--cap-add=NET_ADMIN` should be used.
 
-### Application Setup
+### docker-compose:
+Compatible with docker-compose v2 schemas.
+```
+---
+version: "2.1"
+services:
+  openvpn-as:
+    image: openvpn/openvpn-as
+    container_name: openvpn-as
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 943:943
+      - 443:443
+      - 1194:1194/udp
+    volumes:
+      - <path to data>:/openvpn
+    restart: unless-stopped
+```
 
-The admin interface is available at `https://DOCKER-HOST-IP:943/admin` (assuming bridge mode) with a default user 'openvpn' and the password can be found in the docker logs(on the first initial run):
+## Application Setup
+
+The admin interface is available at `https://DOCKER-HOST-IP:943/admin` (assuming bridge mode) with a default user 'openvpn' and the password can be found in the docker logs (on the first initial run):
 ```
 docker logs -f openvpn-as
 ```
+
 To ensure your devices can connect to your VPN properly, go to Configuration -> Network Settings -> and change the "Hostname or IP Address" section to either your domain name or public ip address.
 
-### Testing/Debugging
+---
+
+## Testing/Debugging
 
 To debug the container:
 ```
@@ -59,6 +82,12 @@ To get an interactive shell:
 ```
 docker exec -it openvpn-as /bin/bash
 ```
+
+To set your own password on the 'openvpn' administrative user, while in the container shell:
+```
+sacli --user "openvpn" --new_pass "WhateverPasswordYouWant" SetLocalPassword
+```
+
 ## Docker image build script
 
 Code contributions for the Docker image build are most welcome. Please submit pull request for review to:
