@@ -10,8 +10,8 @@ if [ ! -c /dev/net/tun ]; then
 fi
 
 # clear old sock and pid files
-rm -rf /usr/local/openvpn_as/etc/sock/*
-rm -rf /usr/local/openvpn_as/etc/pid/*
+rm -rf /usr/local/openvpn_as/etc/sock/* /ovpn/sock/*
+rm -rf /usr/local/openvpn_as/etc/pid/* /ovpn/tmp/*.pid
 
 if [ ! -f /openvpn/etc/docker-init ]; then
     cp -a /usr/local/openvpn_as/etc /openvpn/
