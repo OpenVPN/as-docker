@@ -29,6 +29,11 @@ Our licensing model is based on the number of concurrent connected devices, so i
 | `-p 1194/udp` | UDP port. |
 | `-v /openvpn` | Where openvpn-as should store configuration files. |
 
+## Environment
+
+| `-e PROTOCOL=udp` | UDP protocol. |
+
+
 ## Usage
 
 Launch this image:
@@ -52,6 +57,8 @@ services:
     container_name: openvpn-as
     cap_add:
       - NET_ADMIN
+    environment:
+      - PROTOCOL=udp
     ports:
       - 943:943
       - 443:443
