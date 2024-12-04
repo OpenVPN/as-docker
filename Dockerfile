@@ -24,7 +24,6 @@ RUN wget https://as-repository.openvpn.net/as-repo-public.asc -qO /etc/apt/keyri
     && echo "deb [arch=${TARGETPLATFORM#linux/} signed-by=/etc/apt/keyrings/as-repository.asc] http://as-repository.openvpn.net/as/debian jammy main">/etc/apt/sources.list.d/openvpn-as-repo.list \
     && apt-get update \
     && apt-get -y install openvpn-as=$VERSION && \
-
     echo "Cleaning apt cache" \
     && apt-get autoremove \
     && apt-get clean \
