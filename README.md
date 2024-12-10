@@ -34,12 +34,13 @@ Our licensing model is based on the number of concurrent connected devices, so i
 Launch this image:
 ```bash
 docker run -d \
-  --name=openvpn-as --cap-add=NET_ADMIN \
+  --name=openvpn-as --device /dev/net/tun \
+  --cap-add=MKNOD --cap-add=NET_ADMIN \
   -p 943:943 -p 443:443 -p 1194:1194/udp \
   -v <path to data>:/openvpn \
   openvpn/openvpn-as
 ```
-Please note: For interacting with the network stack  `--cap-add=NET_ADMIN` should be used.
+Please note: For interacting with the network stack  `--cap-add=NET_ADMIN`, `--cap-add=MKNOD` and `--device /dev/net/tun` should be used.
 
 ### docker-compose:
 Compatible with docker-compose v2 schemas.
@@ -50,8 +51,11 @@ services:
   openvpn-as:
     image: openvpn/openvpn-as
     container_name: openvpn-as
+    devices:
+      - /dev/net/tun:/dev/net/tun
     cap_add:
       - NET_ADMIN
+      - MKNOD
     ports:
       - 943:943
       - 443:443
@@ -99,3 +103,5 @@ https://github.com/OpenVPN/as-docker
 You can contact the support team for OpenVPN Access Server here:
 
 https://support.openvpn.com/hc/en-us/categories/360006075631-Access-Server
+
+### [EULA and legal information.](https://openvpn.net/legal/)
