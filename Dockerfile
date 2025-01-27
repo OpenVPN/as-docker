@@ -20,8 +20,8 @@ RUN apt-get update && \
         systemctl
 
 # Adding openvpn repository + Installing openvpn-as
-RUN wget https://as-repository.openvpn.net/as-repo-public.asc -qO /etc/apt/keyrings/as-repository.asc \
-    && echo "deb [arch=${TARGETPLATFORM#linux/} signed-by=/etc/apt/keyrings/as-repository.asc] http://as-repository.openvpn.net/as/debian jammy main">/etc/apt/sources.list.d/openvpn-as-repo.list \
+RUN wget https://packages.openvpn.net/as-repo-public.asc -qO /etc/apt/keyrings/as-repository.asc \
+    && echo "deb [arch=${TARGETPLATFORM#linux/} signed-by=/etc/apt/keyrings/as-repository.asc] http://packages.openvpn.net/as/debian jammy main">/etc/apt/sources.list.d/openvpn-as-repo.list \
     && apt-get update \
     && apt-get -y install openvpn-as=$VERSION && \
     echo "Cleaning apt cache" \
