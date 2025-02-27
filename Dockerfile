@@ -1,7 +1,7 @@
 # Copyright 2024 OpenVPN Inc <sales@openvpn.net>
 # SPDX-License-Identifier: Apache-2.0
 #
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 LABEL org.opencontainers.image.authors="pkg@openvpn.net"
 
@@ -21,7 +21,7 @@ RUN apt-get update && \
 
 # Adding openvpn repository + Installing openvpn-as
 RUN wget https://packages.openvpn.net/as-repo-public.asc -qO /etc/apt/keyrings/as-repository.asc \
-    && echo "deb [arch=${TARGETPLATFORM#linux/} signed-by=/etc/apt/keyrings/as-repository.asc] http://packages.openvpn.net/as/debian jammy main">/etc/apt/sources.list.d/openvpn-as-repo.list \
+    && echo "deb [arch=${TARGETPLATFORM#linux/} signed-by=/etc/apt/keyrings/as-repository.asc] http://packages.openvpn.net/as/debian noble main">/etc/apt/sources.list.d/openvpn-as-repo.list \
     && apt-get update \
     && apt-get -y install openvpn-as=$VERSION && \
     echo "Cleaning apt cache" \
