@@ -38,6 +38,7 @@ docker run -d \
   --cap-add=MKNOD --cap-add=NET_ADMIN \
   -p 943:943 -p 443:443 -p 1194:1194/udp \
   -v <path to data>:/openvpn \
+  --restart=unless-stopped \
   openvpn/openvpn-as
 ```
 Please note: For interacting with the network stack  `--cap-add=NET_ADMIN`, `--cap-add=MKNOD` and `--device /dev/net/tun` should be used.
