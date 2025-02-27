@@ -12,19 +12,14 @@ ARG TARGETPLATFORM \
 # Installing system software
 RUN apt-get update && \
     apt-get install -y \
-        ca-certificates \
-        wget \
-        gnupg \
+        curl \
         net-tools \
         iptables \
         systemctl
 
-# Adding openvpn repository + Installing openvpn-as
-RUN wget https://packages.openvpn.net/as-repo-public.asc -qO /etc/apt/keyrings/as-repository.asc \
-    && echo "deb [arch=${TARGETPLATFORM#linux/} signed-by=/etc/apt/keyrings/as-repository.asc] http://packages.openvpn.net/as/debian noble main">/etc/apt/sources.list.d/openvpn-as-repo.list \
-    && apt-get update \
-    && apt-get -y install openvpn-as=$VERSION && \
-    echo "Cleaning apt cache" \
+# Installing openvpn-as
+RUN bash -c 'bash <(curl -fsS https://packages.openvpn.net/as/install.sh) --yes --as-version=$VERSION --without-dco' \
+    && echo "Cleaning apt cache" \
     && apt-get autoremove \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
