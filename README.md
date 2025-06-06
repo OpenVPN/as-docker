@@ -70,7 +70,7 @@ services:
 
 The admin interface is available at `https://DOCKER-HOST-IP:943/admin` (assuming bridge mode) with a default user 'openvpn' and the password can be found in the docker logs (on the first initial run):
 ```
-docker logs -f openvpn-as
+docker logs openvpn-as | grep "Auto-generated pass"
 ```
 
 To ensure your devices can connect to your VPN properly, go to Configuration -> Network Settings -> and change the "Hostname or IP Address" section to either your domain name or public ip address.
