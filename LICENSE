@@ -1,3 +1,10 @@
+   This (Apache 2.0) license is exclusively distributed for the software
+   originating from this repository and is not associated with any third-party
+   software installed by this program (like OpenVPN Access Server).
+
+   For the software product OpenVPN Access Server the commercial license
+   can be found at https://openvpn.net/legal/
+
                                  Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
@@ -174,10 +181,6 @@
       of your accepting any such warranty or additional liability.
 
    END OF TERMS AND CONDITIONS
-
-   This license is exclusively distributed for the software originating
-   from this repository and is not associated with any third-party software
-   installed by this program (like OpenVPN Access Server).
 
    APPENDIX: How to apply the Apache License to your work.
 
