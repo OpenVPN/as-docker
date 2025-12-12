@@ -1,4 +1,4 @@
-![openvpn-as](https://openvpn.net/images/logo-ovpn-dark.svg)
+![openvpn-as](https://as-prod-public.s3.us-west-1.amazonaws.com/openvpn_logo_big.svg)
 # OpenVPN Access Server
 
 [OpenVPN Access Server](https://openvpn.net/access-server/), the OpenVPN self-hosted solution, simplifies the rapid deployment of a secure remote access solution with a web-based graphic user interface and OpenVPN Connect client installers.
