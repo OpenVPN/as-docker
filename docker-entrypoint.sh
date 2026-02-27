@@ -18,6 +18,8 @@ if [ ! -f /openvpn/etc/docker-init ]; then
     cp -a /usr/local/openvpn_as/etc.docker.bak /openvpn/etc
     /usr/local/openvpn_as/bin/ovpn-init --force --batch --no_start
     touch /openvpn/etc/docker-init
+else
+    cp -a /usr/local/openvpn_as/etc.docker.bak/VERSION /openvpn/etc/VERSION
 fi
 
 exec "$@"
