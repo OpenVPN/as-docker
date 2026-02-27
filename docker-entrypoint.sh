@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright 2024 OpenVPN Inc <sales@openvpn.net>
+# Copyright 2026 OpenVPN Inc <sales@openvpn.net>
 # SPDX-License-Identifier: Apache-2.0
 
 set -ex
@@ -10,19 +10,16 @@ if [ ! -c /dev/net/tun ]; then
 fi
 
 # clear old sock and pid files
-rm -rf /usr/local/openvpn_as/etc/sock/* /ovpn/sock/*
-rm -rf /usr/local/openvpn_as/etc/pid/* /ovpn/tmp/*.pid
+rm -rf /ovpn/sock/*
+rm -rf /ovpn/tmp/*.pid
 
 if [ ! -f /openvpn/etc/docker-init ]; then
-    cp -a /usr/local/openvpn_as/etc /openvpn/
-fi
-
-rm -rf /usr/local/openvpn_as/etc
-ln -s /openvpn/etc /usr/local/openvpn_as/etc
-
-if [ ! -f /openvpn/etc/docker-init ]; then
+    rm -rf /openvpn/etc
+    cp -a /usr/local/openvpn_as/etc.docker.bak /openvpn/etc
     /usr/local/openvpn_as/bin/ovpn-init --force --batch --no_start
     touch /openvpn/etc/docker-init
+else
+    cp -a /usr/local/openvpn_as/etc.docker.bak/VERSION /openvpn/etc/VERSION
 fi
 
 exec "$@"

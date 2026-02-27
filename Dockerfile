@@ -1,4 +1,4 @@
-# Copyright 2024 OpenVPN Inc <sales@openvpn.net>
+# Copyright 2026 OpenVPN Inc <sales@openvpn.net>
 # SPDX-License-Identifier: Apache-2.0
 #
 FROM ubuntu:24.04
@@ -25,12 +25,19 @@ RUN bash -c 'bash <(curl -fsS https://packages.openvpn.net/as/install.sh) --yes 
     && rm -rf /var/lib/apt/lists/*
 
 # Configuring openvpn
+# It creates 'openvpn_as/etc.docker.bak' backup from initial AS setup
+# for re-init AS from scratch cases
 RUN mkdir -p \
         /openvpn \
         /ovpn/tmp \
         /ovpn/sock \
-        && \
-    sed -i 's#~/tmp#/ovpn/tmp#g;s#~/sock#/ovpn/sock#g' /usr/local/openvpn_as/etc/as_templ.conf
+    && sed -i 's#~/tmp#/ovpn/tmp#g;s#~/sock#/ovpn/sock#g' /usr/local/openvpn_as/etc/as_templ.conf \
+    && rm -rf /usr/local/openvpn_as/etc/sock/* \
+    && rm -rf /usr/local/openvpn_as/etc/pid/* \
+    && cp -a /usr/local/openvpn_as/etc /usr/local/openvpn_as/etc.docker.bak \
+    && cp -a /usr/local/openvpn_as/etc /openvpn/ \
+    && rm -rf /usr/local/openvpn_as/etc \
+    && ln -s /openvpn/etc /usr/local/openvpn_as/etc
 
 COPY docker-entrypoint.sh /
 
