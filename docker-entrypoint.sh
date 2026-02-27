@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright 2024 OpenVPN Inc <sales@openvpn.net>
+# Copyright 2026 OpenVPN Inc <sales@openvpn.net>
 # SPDX-License-Identifier: Apache-2.0
 
 set -ex
