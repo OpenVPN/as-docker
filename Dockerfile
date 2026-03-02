@@ -11,11 +11,7 @@ ARG TARGETPLATFORM \
 
 # Installing system software
 RUN apt-get update && \
-    apt-get install -y \
-        curl \
-        net-tools \
-        iptables \
-        systemctl
+    apt-get install -y curl systemctl
 
 # Installing openvpn-as
 RUN bash -c 'bash <(curl -fsS https://packages.openvpn.net/as/install.sh) --yes --as-version=$VERSION --without-dco' \
