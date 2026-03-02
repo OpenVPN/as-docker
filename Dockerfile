@@ -9,30 +9,23 @@ ARG TARGETPLATFORM \
     VERSION \
     DEBIAN_FRONTEND="noninteractive"
 
-# Installing system software
-RUN apt-get update && \
-    apt-get install -y curl systemctl
-
-# Installing openvpn-as
-RUN bash -c 'bash <(curl -fsS https://packages.openvpn.net/as/install.sh) --yes --as-version=$VERSION --without-dco' \
+# This creates 'openvpn_as/etc.docker.bak' backup from initial AS setup
+# for re-init AS from scratch cases
+RUN apt-get update \
+    && apt-get install -y curl systemctl \
+    && bash -c 'bash <(curl -fsS https://packages.openvpn.net/as/install.sh) --yes --as-version=$VERSION --without-dco' \
     && echo "Cleaning apt cache" \
     && apt-get autoremove \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-# Configuring openvpn
-# It creates 'openvpn_as/etc.docker.bak' backup from initial AS setup
-# for re-init AS from scratch cases
-RUN mkdir -p \
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p \
         /openvpn \
         /ovpn/tmp \
         /ovpn/sock \
     && sed -i 's#~/tmp#/ovpn/tmp#g;s#~/sock#/ovpn/sock#g' /usr/local/openvpn_as/etc/as_templ.conf \
     && rm -rf /usr/local/openvpn_as/etc/sock/* \
     && rm -rf /usr/local/openvpn_as/etc/pid/* \
-    && cp -a /usr/local/openvpn_as/etc /usr/local/openvpn_as/etc.docker.bak \
-    && cp -a /usr/local/openvpn_as/etc /openvpn/ \
-    && rm -rf /usr/local/openvpn_as/etc \
+    && mv /usr/local/openvpn_as/etc /usr/local/openvpn_as/etc.docker.bak \
     && ln -s /openvpn/etc /usr/local/openvpn_as/etc
 
 COPY docker-entrypoint.sh /
