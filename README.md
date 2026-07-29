@@ -75,6 +75,18 @@ docker logs openvpn-as | grep "Auto-generated pass"
 
 To ensure your devices can connect to your VPN properly, go to Configuration -> Network Settings -> and change the "Hostname or IP Address" section to either your domain name or public ip address.
 
+## Kubernetes / Helm Chart
+
+An official Helm chart is available for deploying on Kubernetes:
+
+- **Artifact Hub:** <https://artifacthub.io/packages/helm/as-helm-chart/openvpn-as>
+- **Public GitHub repository:** <https://github.com/OpenVPN/as-helm-chart>
+
+```
+helm repo add as-helm-chart https://openvpn.github.io/as-helm-chart
+helm install my-vpn as-helm-chart/openvpn-as
+```
+
 ---
 
 ## Testing/Debugging
