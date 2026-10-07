@@ -1,7 +1,7 @@
 # Copyright 2026 OpenVPN Inc <sales@openvpn.net>
 # SPDX-License-Identifier: Apache-2.0
 #
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 
 LABEL org.opencontainers.image.authors="pkg@openvpn.net"
 
